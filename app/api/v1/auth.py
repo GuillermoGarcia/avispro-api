@@ -39,6 +39,7 @@ def basic_auth_error():
 def verificar_token(token):
     print('Token: {}'.format(token))
     idUsuario = Firebase.firebase_verificar_token(token) if token else None
+    print('Token: {}'.format(token))
     if idUsuario is None:
         g.usuario_actual = Usuario.verificar_token(token) if token else None
     else:
