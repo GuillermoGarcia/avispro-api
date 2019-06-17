@@ -1,6 +1,6 @@
 from flask import jsonify, url_for, request, g, abort
 from app import db
-from app.models import Usuario, HabilidadBase, Personaje
+from app.models import Usuario, HabilidadBase
 from app.api.v1 import bp
 from app.api.v1.errores import peticion_erronea
 from app.api.v1.auth import admin_auth
@@ -95,29 +95,22 @@ def borrar_habilidad(idHabilidad):
 @bp.route('/firebase', methods=['HEAD'])
 @admin_auth.login_required
 def actualizar_desde_firebase():
-    personajes = firestore.collection(u'personajes').get()
-    for personaje in personajes:
-        dct = personaje.to_dict()
-        if Personaje.query.filter_by(idPersonaje=dct['idPersonaje']).count() == 0:
-            usuarios = firestore.collection(u'usuarios').where(u'personajes', 'array_contains', dct['idPersonaje']).get()
-            for usuario in usuarios:
-                u = usuario.to_dict()
+    usuarios = firestore.collection(u'usuarios').get()
+    for usuario in usuarios:
+        dct = usuario.to_dict()
+        if Usuario.query.filter_by(idUsuario=dct['idUsuario']).count() == 0:
             datos = {
-                'idPersonaje': dct['idPersonaje'],
+                'idUsuario': dct['idUsuario'],
+                'alias': dct['alias'],
                 'avatar': dct['avatar'],
-                'caracteristicas': dct['caracteristicas'],
-                'cultura': dct['cultura'],
-                'edad': dct['edad'],
-                'nivel': dct['nivel'],
-                'nombre': dct['nombre'],
-                'procedencia': dct['procedencia'],
-                'raza': dct['raza'],
+                'correo': dct['correo'],
+                'contrasena': 'A',
+                'personajes': dct['personajes'],
             }
-            p = Personaje()
-            p.from_dict(datos, u['idUsuario'])
-            db.session.add(p)
+            u = Usuario()
+            u.from_dict(datos, nuevo_usuario=True)
+            db.session.add(u)
             db.session.commit()
-            p = None
             u = None
     return ''
 
