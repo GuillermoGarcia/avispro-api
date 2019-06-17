@@ -46,11 +46,12 @@ class Firebase():
             u'idUsuario': usuario.idUsuario,
             u'correo': usuario.correo,
             u'avatar': usuario.avatar,
-            u'alias': usuario.alias,
-            u'personajes': usuario.personajes
+            u'alias': usuario.alias
         }
-        print(datos)
-        firestore.collection(u'usuarios').document(usuario.idUsuario).update(datos)
+        try:
+            firestore.collection(u'usuarios').document(usuario.idUsuario).update(datos)
+        except:
+            print('No se ha actualizado firebase.')
 
     '''
         Actualizar ids de los personajes de un usuario en Cloud Firestore
