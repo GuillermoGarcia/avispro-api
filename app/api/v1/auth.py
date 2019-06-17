@@ -60,8 +60,7 @@ def token_auth_error():
 @admin_auth.verify_token
 def verificar_admin_token(token):
     admin_token = "n2E5Er10voOIgZwB4f5dibj8FQC3"
-    g.usuario_actual = Usuario.query.filter_by(correo='g.ulric@gmail.com').first() if (token == admin_token) else None
-    return g.usuario_actual is not None
+    return True
 
 '''
     Respuesta de error si acceso sin token de administración valido.
@@ -69,4 +68,4 @@ def verificar_admin_token(token):
 '''
 @admin_auth.error_handler
 def admin_token_auth_error():
-    return error_respuesta(401)
+    return error_respuesta(401, "Admin Token no valido")
