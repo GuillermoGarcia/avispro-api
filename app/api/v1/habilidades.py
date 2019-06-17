@@ -114,5 +114,5 @@ def actualizar_desde_firebase():
             db.session.add(u)
             db.session.commit()
             u = None
-    return respond
+    return response
 
