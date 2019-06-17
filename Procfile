@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn avispro-api:app
+web: flask db upgrade; gunicorn avispro-api:application
