@@ -9,7 +9,8 @@ class Firebase():
         @param: token, token de usuario
         @return: String, el uid del usuario o None
     '''
-    def firebase_verificar_token(self, token):
+    @staticmethod
+    def firebase_verificar_token(token):
         print('Token: {}'.format(token))
         firebase_token = auth().verify_id_token(token)
         print('Token: {}'.format(firebase_token))
@@ -20,7 +21,8 @@ class Firebase():
         @param: usuario, los datos de usuario
         @return: String, el id del usuario creado
     '''
-    def firebase_crear_usuario(self, usuario):
+    @staticmethod
+    def firebase_crear_usuario(usuario):
         datos = {
             u'idUsuario': u'',
             u'alias': u'{}'.format(usuario['alias']),
@@ -38,7 +40,8 @@ class Firebase():
         @param: usuario, los datos de usuario a actualizar
         @return:
     '''
-    def firebase_actualizar_usuario(self, usuario):
+    @staticmethod
+    def firebase_actualizar_usuario(usuario):
         datos = {
             u'idUsuario': usuario.idUsuario,
             u'correo': usuario.correo,
@@ -54,7 +57,8 @@ class Firebase():
         @param: personajes, array con los ids de los personajes
         @return:
     '''
-    def firebase_actualizar_usuario_personajes(self, personajes):
+    @staticmethod
+    def firebase_actualizar_usuario_personajes(personajes):
         firestore.collection(u'usuarios').document(g.usuario_actual.idUsuario).update({u'personajes': personajes})
 
     '''
@@ -62,7 +66,8 @@ class Firebase():
         @param: personaje, los datos de personaje
         @return: String, el id del personaje creado
     '''
-    def firebase_crear_personaje(self, personaje):
+    @staticmethod
+    def firebase_crear_personaje(personaje):
         datos = {
             u'idPersonaje': u'',
             u'nombre': u'{}'.format(personaje['nombre']),
@@ -84,7 +89,8 @@ class Firebase():
         @param: personaje, los datos de personaje a actualizar
         @return:
     '''
-    def firebase_actualizar_personaje(self, personaje):
+    @staticmethod
+    def firebase_actualizar_personaje(personaje):
         datos = {
             u'idPersonaje': personaje.idPersonaje,
             u'nombre': personaje.nombre,
@@ -105,7 +111,8 @@ class Firebase():
         @param: habilidad, los datos de la nueva habilidad del personaje
         @return: String, el id de la nueva habilidad creada
     '''
-    def firebase_crear_habilidad(self, habilidad):
+    @staticmethod
+    def firebase_crear_habilidad(habilidad):
         datos = {
             u'idHabilidadPersonaje': u'',
             u'idPersonaje': u'{}'.format(habilidad['personaje_id']),
@@ -125,7 +132,8 @@ class Firebase():
         @param: habilidad, los datos de habilidad a actualizar
         @return:
     '''
-    def firebase_actualizar_habilidad(self, habilidad):
+    @staticmethod
+    def firebase_actualizar_habilidad(habilidad):
         datos = {
             u'idHabilidadPersonaje': u'{}'.format(habilidad.idPersonaje),
             u'idPersonaje': u'{}'.format(habilidad.personaje_id),
@@ -143,7 +151,8 @@ class Firebase():
         @param: nombreMaster, nombre del usuario master del nuevo combate
         @return: String, el id del nuevo combate creado
     '''
-    def firebase_crear_combate(self, combate, nombreMaster):
+    @staticmethod
+    def firebase_crear_combate(combate, nombreMaster):
         datos = {
             u'idCombate': u'',
             u'nombre': u'{}'.format(combate['nombre']),
@@ -168,7 +177,8 @@ class Firebase():
         @param: nombreMaster, nombre del usuario master del combate
         @return: None
     '''
-    def firebase_actualizar_combate(self, combate, nombreMaster):
+    @staticmethod
+    def firebase_actualizar_combate(combate, nombreMaster):
         datos = {
             u'idCombate': u'{}'.format(combate.idCombate),
             u'nombre': u'{}'.format(combate.nombre),
@@ -190,7 +200,8 @@ class Firebase():
         @param: pjs, array con los ids de los combatientes
         @return: None
     '''
-    def firebase_actualizar_combate_pjs(self, idCombate, pjs):
+    @staticmethod
+    def firebase_actualizar_combate_pjs(idCombate, pjs):
         firestore.collection(u'combate').document(idCombate).update({u'idPjs': pjs})
 
     '''
@@ -199,7 +210,8 @@ class Firebase():
         @param: pnjs, array con los ids de los combatientes
         @return: None
     '''
-    def firebase_actualizar_combate_pnjs(self, idCombate, pnjs):
+    @staticmethod
+    def firebase_actualizar_combate_pnjs(idCombate, pnjs):
         firestore.collection(u'combate').document(idCombate).update({u'idPnjs': pnjs})
 
     '''
@@ -207,7 +219,8 @@ class Firebase():
         @param: combatiente, los datos del nuevo combatiente
         @return: String, el id del nuevo combatiente creado
     '''
-    def firebase_crear_combatiente(self, combatiente):
+    @staticmethod
+    def firebase_crear_combatiente(combatiente):
         datos = {
             u'idCombatiente': u'',
             u'nombre': u'{}'.format(combatiente['nombre']),
@@ -226,7 +239,8 @@ class Firebase():
         @param: combatiente, los datos de combatiente a actualizar
         @return:
     '''
-    def firebase_actualizar_combatiente(self, combatiente):
+    @staticmethod
+    def firebase_actualizar_combatiente(combatiente):
         datos = {
             u'idCombatiente': u'{}'.format(combatiente.idCombatiente),
             u'nombre': u'{}'.format(combatiente.nombre),
