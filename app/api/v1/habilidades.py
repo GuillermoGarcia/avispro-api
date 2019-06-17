@@ -108,6 +108,7 @@ def actualizar_desde_firebase():
                 'contrasena': 'A',
                 'personajes': dct['personajes'],
             }
+            print(datos)
             u = Usuario()
             u.from_dict(datos, nuevo_usuario=True)
             response.append(u.to_dict())
