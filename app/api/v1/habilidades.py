@@ -96,6 +96,7 @@ def borrar_habilidad(idHabilidad):
 @admin_auth.login_required
 def actualizar_desde_firebase():
     usuarios = firestore.collection(u'usuarios').get()
+    response = []
     for usuario in usuarios:
         dct = usuario.to_dict()
         if Usuario.query.filter_by(idUsuario=dct['idUsuario']).count() == 0:
@@ -109,8 +110,9 @@ def actualizar_desde_firebase():
             }
             u = Usuario()
             u.from_dict(datos, nuevo_usuario=True)
+            response.append(u.to_dict())
             db.session.add(u)
             db.session.commit()
             u = None
-    return ''
+    return respond
 
