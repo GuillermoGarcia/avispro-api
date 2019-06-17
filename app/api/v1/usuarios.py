@@ -55,6 +55,7 @@ def actualizar_usuario(idUsuario):
         abort(403)
     usuario = Usuario.query.get_or_404(idUsuario)
     datos = request.get_json() or {}
+    print(datos)
     if 'idUsuario' in datos:
         return peticion_erronea('No se puede cambiar el id del Usuario.')
     if 'correo' in datos and datos['correo'] != usuario.correo and \
