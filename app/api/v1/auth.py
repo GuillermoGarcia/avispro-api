@@ -37,14 +37,13 @@ def basic_auth_error():
 '''
 @token_auth.verify_token
 def verificar_token(token):
-    print(token)
+    print('Token: {}'.format(token))
     idUsuario = Firebase.firebase_verificar_token(token) if token else None
     if idUsuario is None:
         g.usuario_actual = Usuario.verificar_token(token) if token else None
-        print(idUsuario)
     else:
-        print(idUsuario)
         g.usuario_actual = Usuario.query.filter_by(idUsuario=idUsuario).first()
+    print('idUsuario: {}'.format(g.usuario_actual.idUsuario))
     return g.usuario_actual is not None
 
 '''
