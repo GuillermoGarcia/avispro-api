@@ -46,6 +46,7 @@ class Firebase():
             u'alias': usuario.alias,
             u'personajes': usuario.personajes
         }
+        print(datos)
         firestore.collection(u'usuarios').document(usuario.idUsuario).update(datos)
 
     '''
