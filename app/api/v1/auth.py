@@ -37,10 +37,13 @@ def basic_auth_error():
 '''
 @token_auth.verify_token
 def verificar_token(token):
+    print(token)
     idUsuario = Firebase.firebase_verificar_token(token) if token else None
     if idUsuario is None:
         g.usuario_actual = Usuario.verificar_token(token) if token else None
+        print(idUsuario)
     else:
+        print(idUsuario)
         g.usuario_actual = Usuario.query.filter_by(idUsuario=idUsuario).first()
     return g.usuario_actual is not None
 
@@ -50,7 +53,7 @@ def verificar_token(token):
 '''
 @token_auth.error_handler
 def token_auth_error():
-    return error_respuesta(401)
+    return error_respuesta(401, "Token no valido")
 
 '''
     Verificar token de administración. El token proviene de un end point
