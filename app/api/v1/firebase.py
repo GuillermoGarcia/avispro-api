@@ -10,7 +10,9 @@ class Firebase():
         @return: String, el uid del usuario o None
     '''
     def firebase_verificar_token(self, token):
+        print('Token: {}'.format(token))
         firebase_token = auth().verify_id_token(token)
+        print('Token: {}'.format(firebase_token))
         return firebase_token['uid']
 
     '''
