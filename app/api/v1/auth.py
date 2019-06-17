@@ -60,7 +60,10 @@ def token_auth_error():
 @admin_auth.verify_token
 def verificar_admin_token(token):
     admin_token = "n2E5Er10voOIgZwB4f5dibj8FQC3"
-    return True
+    if (token == admin_token):
+        return True
+    else:
+        return False
 
 '''
     Respuesta de error si acceso sin token de administración valido.
