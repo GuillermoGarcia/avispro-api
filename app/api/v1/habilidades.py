@@ -135,10 +135,10 @@ def actualizar_desde_firebase():
                                 'raza': p_dct['raza'],
                                 'usuario_id': u.idUsuario
                             }
-                            print('Personaje: {}, habilidades: {}'.format(p_datos, len(p_dct['habilidades'])))
                             p = Personaje()
                             p.from_dict(p_datos)
                             respuesta_personajes.append(p_datos)
+                            print('Personaje: {}, habilidades: {}'.format(p_datos, len(p_dct['habilidades'])))
                             if len(p_dct['habilidades']) > 0:
                                 for habilidad in p_dct['habilidades']:
                                     try:
@@ -169,7 +169,9 @@ def actualizar_desde_firebase():
                                 print('Personaje sin habilidades.')
                             db.session.add(p)
                             print('Personaje {} añadido'.format(p))
-                            p = None
+                            p = 
+            else:
+                print('Usuario sin personajes.')
             db.session.add(u)
             print('Usuario {} añadido'.format(u))
             u = None
