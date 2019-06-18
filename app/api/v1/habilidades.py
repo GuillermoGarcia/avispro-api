@@ -139,7 +139,7 @@ def actualizar_desde_firebase():
                         hab = firestore.colletion(u'habilidadPersonaje').document(u''.format(habilidad)).get()
                         print('idHabilidadPersonaje: {}'.format(habilidad))
                         h_dct = hab.to_dict()
-                        print('Habilidad: {}'.formathp_dct))
+                        print('Habilidad: {}'.format(hp_dct))
                         if HabilidadPersonaje.query.filter_by(idHabilidadPersonaje=h_dct['idHabilidadPersonaje']).count() == 0:
                             h_datos = {
                                 'idHabilidadPersonaje': h_dct['idHabilidadPersonaje'],
