@@ -241,8 +241,10 @@ class Combatiente(db.Model):
 class Combate(db.Model):
     idCombate = db.Column(db.String(28), primary_key=True)
     descripcion = db.Column(db.String(140))
+    iniciativa = db.Column(db.Integer, nullable=False, default=0)
     master_id = db.Column(db.String(28), db.ForeignKey('usuario.idUsuario'), nullable=False)
     nombre = db.Column(db.String(64), nullable=False)
+    orden = db.Column(db.ARRAY(db.Integer))
     pjs = db.relationship('Combatiente', secondary=pjs, backref=db.backref("PJS", lazy='dynamic'), lazy='dynamic')
     pnjs = db.relationship('Combatiente', secondary=pnjs, backref=db.backref("PNJS", lazy='dynamic'), lazy='dynamic')
     turno = db.Column(db.Integer, nullable=False, default=0)
@@ -262,14 +264,16 @@ class Combate(db.Model):
             'nombre': self.nombre,
             'master_id': self.master_id,
             'descripcion': self.descripcion,
+            'iniciativa': self.iniciativa,
             'turno': self.turno,
+            'orden': self.orden,
             'pjs': pjs,
             'pnjs': pnjs
         }
         return resultado
 
     def from_dict(self, datos):
-        for campo in ['idCombate', 'descripcion', 'master_id', 'nombre', 'pjs_id', 'pnjs_id', 'turno']:
+        for campo in ['idCombate', 'descripcion', 'iniciativa', 'master_id', 'nombre', 'pjs_id', 'pnjs_id', 'turno', 'orden']:
             if campo in datos:
                 setattr(self, campo, datos[campo])
 

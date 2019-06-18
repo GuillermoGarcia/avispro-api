@@ -1,6 +1,6 @@
 from flask import jsonify, url_for, request, g, abort
 from app import db
-from app.models import HabilidadBase, HabilidadPersonaje, Personaje, Usuario
+from app.models import Combate, Combatiente, HabilidadBase, HabilidadPersonaje, Personaje, Usuario
 from app.api.v1 import bp
 from app.api.v1.errores import peticion_erronea
 from app.api.v1.auth import admin_auth
@@ -96,9 +96,6 @@ def borrar_habilidad(idHabilidad):
 @admin_auth.login_required
 def actualizar_desde_firebase():
     usuarios = firestore.collection(u'usuarios').get()
-    respuesta_habilidades = []
-    respuesta_personajes = []
-    respuesta_usuarios = []
     for usuario in usuarios:
         dct = usuario.to_dict()
         if Usuario.query.filter_by(idUsuario=dct['idUsuario']).count() == 0:
@@ -111,10 +108,8 @@ def actualizar_desde_firebase():
             }
             u = Usuario()
             u.from_dict(datos, nuevo_usuario=True)
-            respuesta_usuarios.append(datos)
             db.session.add(u)
             db.session.commit()
-            print('Usuario: {}, personaje: {}'.format(datos, len(dct['personajes'])))
             if len(dct['personajes']) > 0:
                 for personaje in dct['personajes']:
                     try:
@@ -123,7 +118,6 @@ def actualizar_desde_firebase():
                         print(u'Personaje {} no encontrado'.format(personaje))
                     if pj_doc.exists:
                         p_dct = pj_doc.to_dict()
-                        print('Personaje {} Existe'.format(p_dct['idPersonaje']))
                         if Personaje.query.filter_by(idPersonaje=p_dct['idPersonaje']).count() == 0:
                             p_datos = {
                                 'idPersonaje': p_dct['idPersonaje'],
@@ -138,10 +132,8 @@ def actualizar_desde_firebase():
                             }
                             pj = Personaje()
                             pj.from_dict(p_datos, u.idUsuario)
-                            respuesta_personajes.append(p_datos)
                             db.session.add(pj)
                             db.session.commit()
-                            print('Personaje: {}, habilidades: {}'.format(p_datos, len(p_dct['habilidades'])))
                             if len(p_dct['habilidades']) > 0:
                                 for habilidad in p_dct['habilidades']:
                                     try:
@@ -150,7 +142,6 @@ def actualizar_desde_firebase():
                                         print(u'Habilidad {} no encontrada'.format(habilidad))
                                     if hab_doc.exists:
                                         h_dct = hab_doc.to_dict()
-                                        print('Habilidad {} Existe'.format(h_dct['idHabilidadPersonaje']))
                                         if HabilidadPersonaje.query.filter_by(idHabilidadPersonaje=h_dct['idHabilidadPersonaje']).count() == 0:
                                             h_datos = {
                                                 'idHabilidadPersonaje': h_dct['idHabilidadPersonaje'],
@@ -161,20 +152,71 @@ def actualizar_desde_firebase():
                                                 'habilidadUsada': h_dct['habilidadUsada'],
                                                 'valorBase': h_dct['valorBase'],
                                             }
-                                            print('Habilidad: {}'.format(h_datos))
                                             hab = HabilidadPersonaje()
                                             hab.from_dict(h_datos)
-                                            respuesta_habilidades.append(h_datos)
                                             db.session.add(hab)
                                             db.session.commit()
-                                            print('Habilidad {} añadido'.format(h))
                                             hab = None
-                            else:
-                                print('Personaje sin habilidades.')
-                            print('Personaje {} añadido'.format(pj))
                             pj = None
-            else:
-                print('Usuario sin personajes.')
-            print('Usuario {} añadido'.format(u))
             u = None
-    return 'Usuario: {}\nPersonajes: {}\nHabilidades: {}'.format(respuesta_usuarios, respuesta_personajes, respuesta_habilidades)
+    combates = firestore.collection(u'combate').get()
+    for combate in combates:
+        c_dct = combate.to_dict()
+        if Combate.query.filter_by(idCombate=c_dct['idCombate']).count() == 0:
+            c_datos = {
+                'idCombate': c_dct['idCombate'],
+                'descripcion': c_dct['descripcion'],
+                'master_id': c_dct['idMaster'],
+                'nombre': c_dct['nombre'],
+                'turno': c_dct['turno'],
+                'orden': c_dct['orden']
+            }
+            c = Combate()
+            c.from_dict(c_datos)
+            db.session.add(c)
+            db.session.commit()
+            if len(c_dct['idPjs']) > 0:
+                for pjs in c_dct['idPjs']:
+                    try:
+                        cm_doc = firestore.collection(u'combatiente').document(u'{}'.format(pjs)).get()
+                    except:
+                        print(u'Combatiente {} no encontrado'.format(pjs))
+                    if cm_doc.exists:
+                        cm_dct = cm_doc.to_dict()
+                        if Combatiente.query.filter_by(idCombatiente=cm_dct['idCombatiente']).count() == 0:
+                            cm_datos = {
+                                'idCombatiente': cm_dct['idCombatiente'],
+                                'avatar': cm_dct['avatar'],
+                                'iniciativa': cm_dct['iniciativa'],
+                                'nombre': cm_dct['nombre'],
+                                'reflejos': cm_dct['reflejos'],
+                                'velocidadArma': cm_dct['velocidadArma']
+                            }
+                            cm = Combatiente()
+                            cm.from_dict(cm_datos)
+                            db.session.add(cm)
+                            c.pjs.append(cm)
+                            db.session.commit()
+            if len(c_dct['idPnjs']) > 0:
+                for pnjs in c_dct['idPnjs']:
+                    try:
+                        cm_doc = firestore.collection(u'combatiente').document(u'{}'.format(pnjs)).get()
+                    except:
+                        print(u'Combatiente {} no encontrado'.format(pnjs))
+                    if cm_doc.exists:
+                        cm_dct = cm_doc.to_dict()
+                        if Combatiente.query.filter_by(idCombatiente=cm_dct['idCombatiente']).count() == 0:
+                            cm_datos = {
+                                'idCombatiente': cm_dct['idCombatiente'],
+                                'avatar': cm_dct['avatar'],
+                                'iniciativa': cm_dct['iniciativa'],
+                                'nombre': cm_dct['nombre'],
+                                'reflejos': cm_dct['reflejos'],
+                                'velocidadArma': cm_dct['velocidadArma']
+                            }
+                            cm = Combatiente()
+                            cm.from_dict(cm_datos)
+                            db.session.add(cm)
+                            c.pnjs.append(cm)
+                            db.session.commit()
+    return u'Operación Terminada'
