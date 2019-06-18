@@ -134,7 +134,7 @@ def actualizar_desde_firebase():
                             'raza': p_dct['raza'],
                             'usuario_id': u.idUsuario
                         }
-                        print('Personaje: {}'.format(p_datos))
+                        print('Personaje: {}, habilidades'.format(p_datos, p_dct['habilidades']))
                         p = Personaje()
                         p.from_dict(p_datos)
                         respuesta_personajes.append(p_datos)
