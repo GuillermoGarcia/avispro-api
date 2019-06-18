@@ -1,6 +1,6 @@
 from flask import jsonify, url_for, request, g, abort
 from app import db
-from app.models import Usuario, HabilidadBase
+from app.models import Usuario, Personaje, HabilidadPersonaje
 from app.api.v1 import bp
 from app.api.v1.errores import peticion_erronea
 from app.api.v1.auth import admin_auth
@@ -105,15 +105,49 @@ def actualizar_desde_firebase():
                 'alias': dct['alias'],
                 'avatar': dct['avatar'],
                 'correo': dct['correo'],
-                'contrasena': 'A',
-                'personajes': dct['personajes'],
+                'contrasena': 'A'
             }
-            print(datos)
             u = Usuario()
             u.from_dict(datos, nuevo_usuario=True)
-            response.append(u.to_dict())
+            for personaje in dct['personajes']:
+                pj = firestore.colletion(u'personajes').document(personaje).get()
+                p_dct = pj.to_dict()
+                if Personaje.query.filter_by(idPersonaje=dct['idPersonaje']).count() == 0:
+                    datos = {
+                        'idPersonaje': dct['idPersonaje'],
+                        'avatar': dct['avatar'],
+                        'cultura': dct['cultura'],
+                        'caracteristicas': dct['caracteristicas'],
+                        'edad': dct['edad'],
+                        'nivel': dct['nivel'],
+                        'nombre': dct['nombre'],
+                        'procedencia': dct['procedencia'],
+                        'raza': dct['raza'],
+                        'usuario_id': u.idUsuario
+                    }
+                    p = Personaje()
+                    p.from_dict(datos)
+                    for habilidad in dct['habilidades']:
+                        hab = firestore.colletion(u'habilidadPersonaje').document(habilidad).get()
+                        h_dct = hab.to_dict()
+                        if HabilidadPersonaje.query.filter_by(idHabilidadPersonaje=dct['idHabilidadPersonaje']).count() == 0:
+                            datos = {
+                                'idHabilidadPersonaje': dct['idHabilidadPersonaje'],
+                                'personaje_id': p.idPersonaje,
+                                'habilidad_id': dct['idHabilidad'],
+                                'extra': dct['extra'],
+                                'pap': dct['pap'],
+                                'habilidadUsada': dct['habilidadUsada'],
+                                'valorBase': dct['valorBase'],
+                            }
+                            h = HabilidadPersonaje()
+                            h.from_dict(datos)
+                            db.session.add(h)
+                    db.session.add(p)
             db.session.add(u)
             db.session.commit()
             u = None
+            p = None
+            h = None
     return response
 
