@@ -134,10 +134,10 @@ def actualizar_desde_firebase():
                             'raza': p_dct['raza'],
                             'usuario_id': u.idUsuario
                         }
-                        p = Personaje()
-                        p.from_dict(datos)
-                        respuesta_personajes.append(p_datos)
                         print('Personaje: {}'.format(p_datos))
+                        p = Personaje()
+                        p.from_dict(p_datos)
+                        respuesta_personajes.append(p_datos)
                         for habilidad in p_dct['habilidades']:
                             try:
                                 hab = firestore.collection(u'habilidadPersonaje').document(u'{}'.format(habilidad)).get()
@@ -156,9 +156,9 @@ def actualizar_desde_firebase():
                                         'habilidadUsada': h_dct['habilidadUsada'],
                                         'valorBase': h_dct['valorBase'],
                                     }
-                                    h = HabilidadPersonaje()
-                                    h.from_dict(datos)
                                     print('Habilidad: {}'.format(h_datos))
+                                    h = HabilidadPersonaje()
+                                    h.from_dict(h_datos)
                                     respuesta_habilidades.append(h_datos)
                                     db.session.add(h)
                                     h = None
