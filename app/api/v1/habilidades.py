@@ -115,8 +115,8 @@ def actualizar_desde_firebase():
             print('Usuario: {}, personaje: {}'.format(datos, dct['personajes']))
             for personaje in dct['personajes']:
                 try:
-                    pj = firestore.colletion(u'personajes').document(u'{}'.format(personaje)).get()
                     print('idPersonaje: {}'.format(personaje))
+                    pj = firestore.colletion(u'personajes').document(u'{}'.format(personaje)).get()
                     p_dct = pj.to_dict()
                     print('Personaje: {}'.format(p_dct))
                     if Personaje.query.filter_by(idPersonaje=p_dct['idPersonaje']).count() == 0:
