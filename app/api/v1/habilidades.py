@@ -165,8 +165,6 @@ def actualizar_desde_firebase():
                                     h = None
                         db.session.add(p)
                         p = None
-                except:
-                    print(u'Personaje {} no encontrado'.format(personaje))
             db.session.add(u)
             u = None
     db.session.commit()
