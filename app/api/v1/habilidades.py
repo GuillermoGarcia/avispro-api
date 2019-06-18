@@ -5,7 +5,6 @@ from app.api.v1 import bp
 from app.api.v1.errores import peticion_erronea
 from app.api.v1.auth import admin_auth
 from app import firestore
-from firebase_admin import google
 
 
 '''
@@ -163,7 +162,7 @@ def actualizar_desde_firebase():
                                     h = None
                         db.session.add(p)
                         p = None
-                except google.cloud.exceptions.NotFound:
+                except:
                     print(u'Personaje {} no encontrado'.format(personaje))
             db.session.add(u)
             u = None
