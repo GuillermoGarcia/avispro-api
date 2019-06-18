@@ -96,7 +96,9 @@ def borrar_habilidad(idHabilidad):
 @admin_auth.login_required
 def actualizar_desde_firebase():
     usuarios = firestore.collection(u'usuarios').get()
-    response = []
+    respuesta_habilidades = []
+    respuesta_personajes = []
+    respuesta_usuarios = []
     for usuario in usuarios:
         dct = usuario.to_dict()
         if Usuario.query.filter_by(idUsuario=dct['idUsuario']).count() == 0:
@@ -109,11 +111,13 @@ def actualizar_desde_firebase():
             }
             u = Usuario()
             u.from_dict(datos, nuevo_usuario=True)
+            respuesta_usuarios.append(datos)
+            print('Usuario: {}'.format(datos))
             for personaje in dct['personajes']:
                 pj = firestore.colletion(u'personajes').document(personaje).get()
                 p_dct = pj.to_dict()
                 if Personaje.query.filter_by(idPersonaje=dct['idPersonaje']).count() == 0:
-                    datos = {
+                    p_datos = {
                         'idPersonaje': p_dct['idPersonaje'],
                         'avatar': p_dct['avatar'],
                         'cultura': p_dct['cultura'],
@@ -127,11 +131,13 @@ def actualizar_desde_firebase():
                     }
                     p = Personaje()
                     p.from_dict(datos)
+                    respuesta_personajes.append(p_datos)
+                    print('Personaje: {}'.format(p_datos))
                     for habilidad in p_dct['habilidades']:
                         hab = firestore.colletion(u'habilidadPersonaje').document(habilidad).get()
                         h_dct = hab.to_dict()
                         if HabilidadPersonaje.query.filter_by(idHabilidadPersonaje=h_dct['idHabilidadPersonaje']).count() == 0:
-                            datos = {
+                            h_datos = {
                                 'idHabilidadPersonaje': h_dct['idHabilidadPersonaje'],
                                 'personaje_id': p.idPersonaje,
                                 'habilidad_id': h_dct['idHabilidad'],
@@ -142,12 +148,14 @@ def actualizar_desde_firebase():
                             }
                             h = HabilidadPersonaje()
                             h.from_dict(datos)
+                            print('Usuario: {}'.format(h_datos))
+                            respuesta_habilidades.append(h_datos)
                             db.session.add(h)
+                            h = None
                     db.session.add(p)
+                    p = None
             db.session.add(u)
-            db.session.commit()
             u = None
-            p = None
-            h = None
-    return response
+    db.session.commit()
+    return 'Usuario: {}\nPersonajes: {}\nHabilidades: {}'.format(respuesta_usuarios, respuesta_personajes, respuesta_habilidades)
 
