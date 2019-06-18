@@ -117,8 +117,8 @@ def actualizar_desde_firebase():
                 pj = firestore.colletion(u'personajes').document(u'{}'.format(personaje)).get()
                 print('idPersonaje: {}'.format(personaje))
                 p_dct = pj.to_dict()
-                print('idPersonaje: {}'.format(personaje))
-                if Personaje.query.filter_by(idPersonaje=dct['personajes']).count() == 0:
+                print('Personaje: {}'.format(p_dct))
+                if Personaje.query.filter_by(idPersonaje=p_dct['idPersonaje']).count() == 0:
                     p_datos = {
                         'idPersonaje': p_dct['idPersonaje'],
                         'avatar': p_dct['avatar'],
@@ -136,8 +136,10 @@ def actualizar_desde_firebase():
                     respuesta_personajes.append(p_datos)
                     print('Personaje: {}'.format(p_datos))
                     for habilidad in p_dct['habilidades']:
-                        hab = firestore.colletion(u'habilidadPersonaje').document(habilidad).get()
+                        hab = firestore.colletion(u'habilidadPersonaje').document(u''.format(habilidad)).get()
+                        print('idHabilidadPersonaje: {}'.format(habilidad))
                         h_dct = hab.to_dict()
+                        print('Habilidad: {}'.formathp_dct))
                         if HabilidadPersonaje.query.filter_by(idHabilidadPersonaje=h_dct['idHabilidadPersonaje']).count() == 0:
                             h_datos = {
                                 'idHabilidadPersonaje': h_dct['idHabilidadPersonaje'],
