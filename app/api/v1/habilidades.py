@@ -112,15 +112,17 @@ def actualizar_desde_firebase():
             u = Usuario()
             u.from_dict(datos, nuevo_usuario=True)
             respuesta_usuarios.append(datos)
+            db.session.add(u)
+            db.session.commit()
             print('Usuario: {}, personaje: {}'.format(datos, len(dct['personajes'])))
             if len(dct['personajes']) > 0:
                 for personaje in dct['personajes']:
                     try:
-                        pj = firestore.collection(u'personajes').document(u'{}'.format(personaje)).get()
+                        pj_doc = firestore.collection(u'personajes').document(u'{}'.format(personaje)).get()
                     except:
                         print(u'Personaje {} no encontrado'.format(personaje))
-                    if pj.exists:
-                        p_dct = pj.to_dict()
+                    if pj_doc.exists:
+                        p_dct = pj_doc.to_dict()
                         print('Personaje {} Existe'.format(p_dct['idPersonaje']))
                         if Personaje.query.filter_by(idPersonaje=p_dct['idPersonaje']).count() == 0:
                             p_datos = {
@@ -132,26 +134,27 @@ def actualizar_desde_firebase():
                                 'nivel': p_dct['nivel'],
                                 'nombre': p_dct['nombre'],
                                 'procedencia': p_dct['procedencia'],
-                                'raza': p_dct['raza'],
-                                'usuario_id': u.idUsuario
+                                'raza': p_dct['raza']
                             }
-                            p = Personaje()
-                            p.from_dict(p_datos)
+                            pj = Personaje()
+                            pj.from_dict(p_datos, u.idUsuario)
                             respuesta_personajes.append(p_datos)
+                            db.session.add(pj)
+                            db.session.commit()
                             print('Personaje: {}, habilidades: {}'.format(p_datos, len(p_dct['habilidades'])))
                             if len(p_dct['habilidades']) > 0:
                                 for habilidad in p_dct['habilidades']:
                                     try:
-                                        hab = firestore.collection(u'habilidadPersonaje').document(u'{}'.format(habilidad)).get()
+                                        hab_doc = firestore.collection(u'habilidadPersonaje').document(u'{}'.format(habilidad)).get()
                                     except:
                                         print(u'Habilidad {} no encontrada'.format(habilidad))
-                                    if hab.exists:
-                                        h_dct = hab.to_dict()
+                                    if hab_doc.exists:
+                                        h_dct = hab_doc.to_dict()
                                         print('Habilidad {} Existe'.format(h_dct['idHabilidadPersonaje']))
                                         if HabilidadPersonaje.query.filter_by(idHabilidadPersonaje=h_dct['idHabilidadPersonaje']).count() == 0:
                                             h_datos = {
                                                 'idHabilidadPersonaje': h_dct['idHabilidadPersonaje'],
-                                                'personaje_id': p.idPersonaje,
+                                                'personaje_id': pj.idPersonaje,
                                                 'habilidad_id': h_dct['idHabilidad'],
                                                 'extra': h_dct['extra'],
                                                 'pap': h_dct['pap'],
@@ -159,21 +162,19 @@ def actualizar_desde_firebase():
                                                 'valorBase': h_dct['valorBase'],
                                             }
                                             print('Habilidad: {}'.format(h_datos))
-                                            h = HabilidadPersonaje()
-                                            h.from_dict(h_datos)
+                                            hab = HabilidadPersonaje()
+                                            hab.from_dict(h_datos)
                                             respuesta_habilidades.append(h_datos)
-                                            db.session.add(h)
+                                            db.session.add(hab)
+                                            db.session.commit()
                                             print('Habilidad {} añadido'.format(h))
-                                            h = None
+                                            hab = None
                             else:
                                 print('Personaje sin habilidades.')
-                            db.session.add(p)
-                            print('Personaje {} añadido'.format(p))
-                            p = 
+                            print('Personaje {} añadido'.format(pj))
+                            pj = None
             else:
                 print('Usuario sin personajes.')
-            db.session.add(u)
             print('Usuario {} añadido'.format(u))
             u = None
-    db.session.commit()
     return 'Usuario: {}\nPersonajes: {}\nHabilidades: {}'.format(respuesta_usuarios, respuesta_personajes, respuesta_habilidades)
