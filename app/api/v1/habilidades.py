@@ -112,11 +112,11 @@ def actualizar_desde_firebase():
             u = Usuario()
             u.from_dict(datos, nuevo_usuario=True)
             respuesta_usuarios.append(datos)
-            print('Usuario: {}, personaje: {}'.format(
-                datos, dct['personajes']))
+            print('Usuario: {}, personaje: {}'.format(datos, dct['personajes']))
             for personaje in dct['personajes']:
                 try:
-                    pj = firestore.collection(u'personajes').document(personaje).get()
+                    pj = firestore.collection(u'personajes').document(u'{}'.format(personaje)).get()
+                    print('Existe {}'.format(pj.exists))
                     p_dct = pj.to_dict()
                     if Personaje.query.filter_by(idPersonaje=p_dct['idPersonaje']).count() == 0:
                         p_datos = {
@@ -136,7 +136,7 @@ def actualizar_desde_firebase():
                         respuesta_personajes.append(p_datos)
                         print('Personaje: {}'.format(p_datos))
                         for habilidad in p_dct['habilidades']:
-                            hab = firestore.collection(u'habilidadPersonaje').document(habilidad).get()
+                            hab = firestore.collection(u'habilidadPersonaje').document(u'{}'.format(habilidad)).get()
                             if hab.exists():
                                 print(
                                     'idHabilidadPersonaje: {}'.format(habilidad))
