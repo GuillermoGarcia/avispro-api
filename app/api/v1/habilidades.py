@@ -119,8 +119,8 @@ def actualizar_desde_firebase():
                 except:
                     print(u'Personaje {} no encontrado'.format(personaje))
                 if pj.exists:
-                    print('Personaje {} Existe'.format(p_dct['idPersonaje']))
                     p_dct = pj.to_dict()
+                    print('Personaje {} Existe'.format(p_dct['idPersonaje']))
                     if Personaje.query.filter_by(idPersonaje=p_dct['idPersonaje']).count() == 0:
                         p_datos = {
                             'idPersonaje': p_dct['idPersonaje'],
@@ -144,9 +144,8 @@ def actualizar_desde_firebase():
                             except:
                                 print(u'Habilidad {} no encontrada'.format(habilidad))
                             if hab.exists:
-                                print('Habilidad {} Existe'.format(p_dct['idHabilidadPersonaje']))
                                 h_dct = hab.to_dict()
-                                print('Habilidad: {}'.format(h_dct))
+                                print('Habilidad {} Existe'.format(h_dct['idHabilidadPersonaje']))
                                 if HabilidadPersonaje.query.filter_by(idHabilidadPersonaje=h_dct['idHabilidadPersonaje']).count() == 0:
                                     h_datos = {
                                         'idHabilidadPersonaje': h_dct['idHabilidadPersonaje'],
