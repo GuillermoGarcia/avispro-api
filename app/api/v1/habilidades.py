@@ -114,31 +114,31 @@ def actualizar_desde_firebase():
                 p_dct = pj.to_dict()
                 if Personaje.query.filter_by(idPersonaje=dct['idPersonaje']).count() == 0:
                     datos = {
-                        'idPersonaje': dct['idPersonaje'],
-                        'avatar': dct['avatar'],
-                        'cultura': dct['cultura'],
-                        'caracteristicas': dct['caracteristicas'],
-                        'edad': dct['edad'],
-                        'nivel': dct['nivel'],
-                        'nombre': dct['nombre'],
-                        'procedencia': dct['procedencia'],
-                        'raza': dct['raza'],
+                        'idPersonaje': p_dct['idPersonaje'],
+                        'avatar': p_dct['avatar'],
+                        'cultura': p_dct['cultura'],
+                        'caracteristicas': p_dct['caracteristicas'],
+                        'edad': p_dct['edad'],
+                        'nivel': p_dct['nivel'],
+                        'nombre': p_dct['nombre'],
+                        'procedencia': p_dct['procedencia'],
+                        'raza': p_dct['raza'],
                         'usuario_id': u.idUsuario
                     }
                     p = Personaje()
                     p.from_dict(datos)
-                    for habilidad in dct['habilidades']:
+                    for habilidad in p_dct['habilidades']:
                         hab = firestore.colletion(u'habilidadPersonaje').document(habilidad).get()
                         h_dct = hab.to_dict()
-                        if HabilidadPersonaje.query.filter_by(idHabilidadPersonaje=dct['idHabilidadPersonaje']).count() == 0:
+                        if HabilidadPersonaje.query.filter_by(idHabilidadPersonaje=h_dct['idHabilidadPersonaje']).count() == 0:
                             datos = {
-                                'idHabilidadPersonaje': dct['idHabilidadPersonaje'],
+                                'idHabilidadPersonaje': h_dct['idHabilidadPersonaje'],
                                 'personaje_id': p.idPersonaje,
-                                'habilidad_id': dct['idHabilidad'],
-                                'extra': dct['extra'],
-                                'pap': dct['pap'],
-                                'habilidadUsada': dct['habilidadUsada'],
-                                'valorBase': dct['valorBase'],
+                                'habilidad_id': h_dct['idHabilidad'],
+                                'extra': h_dct['extra'],
+                                'pap': h_dct['pap'],
+                                'habilidadUsada': h_dct['habilidadUsada'],
+                                'valorBase': h_dct['valorBase'],
                             }
                             h = HabilidadPersonaje()
                             h.from_dict(datos)
