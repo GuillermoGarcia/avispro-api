@@ -163,10 +163,15 @@ def actualizar_desde_firebase():
                                             h.from_dict(h_datos)
                                             respuesta_habilidades.append(h_datos)
                                             db.session.add(h)
+                                            print('Habilidad {} añadido'.format(h))
                                             h = None
+                            else:
+                                print('Personaje sin habilidades.')
                             db.session.add(p)
+                            print('Personaje {} añadido'.format(p))
                             p = None
             db.session.add(u)
+            print('Usuario {} añadido'.format(u))
             u = None
     db.session.commit()
     return 'Usuario: {}\nPersonajes: {}\nHabilidades: {}'.format(respuesta_usuarios, respuesta_personajes, respuesta_habilidades)
