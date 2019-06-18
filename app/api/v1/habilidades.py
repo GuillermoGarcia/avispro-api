@@ -117,7 +117,7 @@ def actualizar_desde_firebase():
                 try:
                     print('idPersonaje: {}'.format(personaje))
                     try:
-                        pj = firestore.colletion(u'personajes').document(u'{}'.format(personaje)).get()
+                        pj = firestore.collection(u'personajes').document(u'{}'.format(personaje)).get()
                         print(u'Personaje cargado')
                     except:
                         print(u'Personaje no cargado')
@@ -141,10 +141,10 @@ def actualizar_desde_firebase():
                         respuesta_personajes.append(p_datos)
                         print('Personaje: {}'.format(p_datos))
                         for habilidad in p_dct['habilidades']:
-                            hab = firestore.colletion(u'habilidadPersonaje').document(u''.format(habilidad)).get()
+                            hab = firestore.collection(u'habilidadPersonaje').document(u''.format(habilidad)).get()
                             print('idHabilidadPersonaje: {}'.format(habilidad))
                             h_dct = hab.to_dict()
-                            print('Habilidad: {}'.format(hp_dct))
+                            print('Habilidad: {}'.format(h_dct))
                             if HabilidadPersonaje.query.filter_by(idHabilidadPersonaje=h_dct['idHabilidadPersonaje']).count() == 0:
                                 h_datos = {
                                     'idHabilidadPersonaje': h_dct['idHabilidadPersonaje'],
