@@ -112,11 +112,11 @@ def actualizar_desde_firebase():
             u = Usuario()
             u.from_dict(datos, nuevo_usuario=True)
             respuesta_usuarios.append(datos)
-            print('Usuario: {}'.format(datos))
+            print('Usuario: {}, personaje: {}'.format(datos, dct['personajes']))
             for personaje in dct['personajes']:
                 pj = firestore.colletion(u'personajes').document(personaje).get()
                 p_dct = pj.to_dict()
-                if Personaje.query.filter_by(idPersonaje=dct['idPersonaje']).count() == 0:
+                if Personaje.query.filter_by(idPersonaje=dct['personajes']).count() == 0:
                     p_datos = {
                         'idPersonaje': p_dct['idPersonaje'],
                         'avatar': p_dct['avatar'],
