@@ -3,12 +3,12 @@
   Api el proyecto [Avispro](hhtps://)
 
 ## Caracteristicas
-  **Lenguaje:** Python
-  **Microframework:** Flask
-  **Plugins:** SQLAlchemy y Alembic
-  **Base de Datos:** Postgres (Amazon RDS)
-  **Localización:** Heroku (https://avispro-api.herokuapp.com/api/v1)
-  **Extra:** Conexión con Firebase
+**Lenguaje:** Python
+**Microframework:** Flask
+**Plugins:** SQLAlchemy y Alembic
+**Base de Datos:** Postgres (Amazon RDS)
+**Localización:** Heroku (https://avispro-api.herokuapp.com/api/v1)
+**Extra:** Conexión con Firebase
 
   Envío de Datos a través del Body en formato JSON
   Respuesta de la API en formato JSON
