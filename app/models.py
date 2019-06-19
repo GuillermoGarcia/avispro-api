@@ -244,7 +244,7 @@ class Combate(db.Model):
     iniciativa = db.Column(db.Integer, nullable=False, default=0)
     master_id = db.Column(db.String(28), db.ForeignKey('usuario.idUsuario'), nullable=False)
     nombre = db.Column(db.String(64), nullable=False)
-    orden = db.Column(db.ARRAY(db.Integer))
+    orden = db.Column(db.ARRAY(db.String(64)))
     pjs = db.relationship('Combatiente', secondary=pjs, backref=db.backref("PJS", lazy='dynamic'), lazy='dynamic')
     pnjs = db.relationship('Combatiente', secondary=pnjs, backref=db.backref("PNJS", lazy='dynamic'), lazy='dynamic')
     turno = db.Column(db.Integer, nullable=False, default=0)

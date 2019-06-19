@@ -1,0 +1,910 @@
+{
+	"info": {
+		"_postman_id": "1b23db96-95d0-44ef-b85f-a783e487a566",
+		"name": "Avispro-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Combate",
+			"item": [
+				{
+					"name": "Obtener Combates",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/combates",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"combates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener un Combate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/combates/{{idCombate}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"combates",
+								"{{idCombate}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Combate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\": \"Combate Risco de Lobos\",\n\t\"descripcion\": \"Combate contra una manada de lobos.\"\n}"
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/combates",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"combates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unirse Pj al Combate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/combates/{{idCombate}}/pj/{{idCombatiente}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"combates",
+								"{{idCombate}}",
+								"pj",
+								"{{idCombatiente}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unirse Pnj al Combate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/combates/{{idCombate}}/pnj/{{idCombatiente}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"combates",
+								"{{idCombate}}",
+								"pnj",
+								"{{idCombatiente}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Combatiente",
+			"item": [
+				{
+					"name": "Crear Combatiente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nombre\": \"Siggurd\",\n\t\"iniciativa\": 16,\n\t\"reflejos\": 21,\n\t\"velocidadArma\": 5 \n}"
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/combatientes",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"combatientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Habilidad Base",
+			"item": [
+				{
+					"name": "Obtener Habilidad Base",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/habilidades/{{idHabilidad}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"habilidades",
+								"{{idHabilidad}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Todas las Habilidades Base",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/habilidades",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"habilidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Habilidad Base",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n{\r\n  \"idHabilidad\": \"Actualidad\",\r\n  \"nombre\": \"Actualidad\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Mem\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Adiestrar\",\r\n  \"nombre\": \"Adiestrar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Pod\",\r\n  \"bonusSecundario\": \"Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Agenciarse\",\r\n  \"nombre\": \"Agenciarse\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per,Emp\",\r\n  \"bonusSecundario\": \"Int,Emp,Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Armería\",\r\n  \"nombre\": \"Armería\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Per,Int,For\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Arquería\",\r\n  \"nombre\": \"Arquería\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Arquitectura\",\r\n  \"nombre\": \"Arquitectura\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Artesanado\",\r\n  \"nombre\": \"Artesanado\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Per,Emp,For\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Audiovisuales\",\r\n  \"nombre\": \"Audiovisuales\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Des,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Bromear\",\r\n  \"nombre\": \"Bromear\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Burocracia\",\r\n  \"nombre\": \"Burocracia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Int\",\r\n  \"bonusSecundario\": \"Vol,Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Cabuyería\",\r\n  \"nombre\": \"Cabuyería\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Int,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Cantar\",\r\n  \"nombre\": \"Cantar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp\",\r\n  \"bonusSecundario\": \"Per,Con\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Cargar - Portear\",\r\n  \"nombre\": \"Cargar - Portear\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"For\",\r\n  \"bonusSecundario\": \"Con,Agi\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Cerraduras\",\r\n  \"nombre\": \"Cerraduras\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Int,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Chapuzas\",\r\n  \"nombre\": \"Chapuzas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Int,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Charlatanería\",\r\n  \"nombre\": \"Charlatanería\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Pod\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Cocina\",\r\n  \"nombre\": \"Cocina\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Des\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Concentración\",\r\n  \"nombre\": \"Concentración\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Vol\",\r\n  \"bonusSecundario\": \"Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conducción\",\r\n  \"nombre\": \"Conducción\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des,Agi\",\r\n  \"bonusSecundario\": \"Per,Ref\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento alquimia\",\r\n  \"nombre\": \"Conocimiento alquimia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Mem,Des\",\r\n  \"bonusSecundario\": \"Int,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento animal\",\r\n  \"nombre\": \"Conocimiento animal\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Mem\",\r\n  \"bonusSecundario\": \"Emp,Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento antropología\",\r\n  \"nombre\": \"Conocimiento antropología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Mem,Emp\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento arqueología\",\r\n  \"nombre\": \"Conocimiento arqueología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Per,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento astronomía\",\r\n  \"nombre\": \"Conocimiento astronomía\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Per\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento bellas artes\",\r\n  \"nombre\": \"Conocimiento bellas artes\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Emp\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento biología\",\r\n  \"nombre\": \"Conocimiento biología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Int\",\r\n  \"bonusSecundario\": \"Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento clima\",\r\n  \"nombre\": \"Conocimiento clima\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Per\",\r\n  \"bonusSecundario\": \"Mem\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento cultura general\",\r\n  \"nombre\": \"Conocimiento cultura general\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento criminalística\",\r\n  \"nombre\": \"Conocimiento criminalística\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Mem\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento demonología\",\r\n  \"nombre\": \"Conocimiento demonología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento ecología\",\r\n  \"nombre\": \"Conocimiento ecología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Int,Emp\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento farmacología\",\r\n  \"nombre\": \"Conocimiento farmacología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Des\",\r\n  \"bonusSecundario\": \"Per,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento física\",\r\n  \"nombre\": \"Conocimiento física\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento geografía\",\r\n  \"nombre\": \"Conocimiento geografía\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento geología\",\r\n  \"nombre\": \"Conocimiento geología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Per,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento historia\",\r\n  \"nombre\": \"Conocimiento historia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Emp,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento leyendas\",\r\n  \"nombre\": \"Conocimiento leyendas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento leyes\",\r\n  \"nombre\": \"Conocimiento leyes\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento lingüística\",\r\n  \"nombre\": \"Conocimiento lingüística\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Mem,Per,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento literatura\",\r\n  \"nombre\": \"Conocimiento literatura\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento magia\",\r\n  \"nombre\": \"Conocimiento magia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Pod,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento matemáticas\",\r\n  \"nombre\": \"Conocimiento matemáticas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Mem\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento medicina\",\r\n  \"nombre\": \"Conocimiento medicina\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Per,Des\",\r\n  \"bonusSecundario\": \"Mem,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento mineral\",\r\n  \"nombre\": \"Conocimiento mineral\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Mem\",\r\n  \"bonusSecundario\": \"Per,Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento necromancia\",\r\n  \"nombre\": \"Conocimiento necromancia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Pod,Mem\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento ocultismo\",\r\n  \"nombre\": \"Conocimiento ocultismo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Pod,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento plantas\",\r\n  \"nombre\": \"Conocimiento plantas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Mem\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento psicología académica\",\r\n  \"nombre\": \"Conocimiento psicología académica\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Emp,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento química\",\r\n  \"nombre\": \"Conocimiento química\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Int,Des\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento red\",\r\n  \"nombre\": \"Conocimiento red\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Per\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento sociología\",\r\n  \"nombre\": \"Conocimiento sociología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Emp\",\r\n  \"bonusSecundario\": \"Per,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Conocimiento teología\",\r\n  \"nombre\": \"Conocimiento teología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Pod,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Contabilidad\",\r\n  \"nombre\": \"Contabilidad\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Contorsionismo\",\r\n  \"nombre\": \"Contorsionismo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Agi\",\r\n  \"bonusSecundario\": \"Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Modales\",\r\n  \"nombre\": \"Modales\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp\",\r\n  \"bonusSecundario\": \"Int,Vol,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Crédito\",\r\n  \"nombre\": \"Crédito\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Pod\",\r\n  \"bonusSecundario\": \"Int,Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Criptografía\",\r\n  \"nombre\": \"Criptografía\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Danza\",\r\n  \"nombre\": \"Danza\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Agi\",\r\n  \"bonusSecundario\": \"Ref,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Demonología\",\r\n  \"nombre\": \"Demonología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Emp,Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Dibujar\",\r\n  \"nombre\": \"Dibujar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Emp,Des\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Diseño sistemas\",\r\n  \"nombre\": \"Diseño sistemas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Documentación\",\r\n  \"nombre\": \"Documentación\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Mem,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Dormirse\",\r\n  \"nombre\": \"Dormirse\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Vol\",\r\n  \"bonusSecundario\": \"-Per,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Electrónica\",\r\n  \"nombre\": \"Electrónica\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per,Des\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Enseñar\",\r\n  \"nombre\": \"Enseñar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Pod\",\r\n  \"bonusSecundario\": \"Int,Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Entonar\",\r\n  \"nombre\": \"Entonar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp\",\r\n  \"bonusSecundario\": \"Pod,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Esconderse\",\r\n  \"nombre\": \"Esconderse\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Agi,Vol\",\r\n  \"bonusSecundario\": \"Per,Int,Ref\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Estilismo\",\r\n  \"nombre\": \"Estilismo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Estrategia\",\r\n  \"nombre\": \"Estrategia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per,Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Explosivos\",\r\n  \"nombre\": \"Explosivos\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Des\",\r\n  \"bonusSecundario\": \"Per,Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Falsificación\",\r\n  \"nombre\": \"Falsificación\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per,Des\",\r\n  \"bonusSecundario\": \"Int,Mem\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Fingir\",\r\n  \"nombre\": \"Fingir\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Pod\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Firmeza\",\r\n  \"nombre\": \"Firmeza\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Vol\",\r\n  \"bonusSecundario\": \"Con\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Herrería\",\r\n  \"nombre\": \"Herrería\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"For\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Idiomas hablados\",\r\n  \"nombre\": \"Idiomas hablados\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Emp,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Idiomas escritos\",\r\n  \"nombre\": \"Idiomas escritos\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Mem,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Informática\",\r\n  \"nombre\": \"Informática\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Interrogar - Entrevista\",\r\n  \"nombre\": \"Interrogar - Entrevista\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Pod,Emp\",\r\n  \"bonusSecundario\": \"Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Intimidar\",\r\n  \"nombre\": \"Intimidar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Pod,For\",\r\n  \"bonusSecundario\": \"Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Juego\",\r\n  \"nombre\": \"Juego\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Pod\",\r\n  \"bonusSecundario\": \"Emp,Des\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Leer labios\",\r\n  \"nombre\": \"Leer labios\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Int,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Liderazgo\",\r\n  \"nombre\": \"Liderazgo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Pod,Emp\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Malabares\",\r\n  \"nombre\": \"Malabares\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des,Ref\",\r\n  \"bonusSecundario\": \"Agi\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Maquinaria pesada\",\r\n  \"nombre\": \"Maquinaria pesada\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Per,Ref\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Masaje\",\r\n  \"nombre\": \"Masaje\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Emp,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Mecánica\",\r\n  \"nombre\": \"Mecánica\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Per,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Meditación\",\r\n  \"nombre\": \"Meditación\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp\",\r\n  \"bonusSecundario\": \"Vol,Int,–Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 3\r\n},\r\n{\r\n  \"idHabilidad\": \"Moneda\",\r\n  \"nombre\": \"Moneda\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per,Mem\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Monta\",\r\n  \"nombre\": \"Monta\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Agi,Emp\",\r\n  \"bonusSecundario\": \"Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Motocicleta\",\r\n  \"nombre\": \"Motocicleta\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Agi\",\r\n  \"bonusSecundario\": \"Des,Ref\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Movimiento\",\r\n  \"nombre\": \"Movimiento\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Agi,Per\",\r\n  \"bonusSecundario\": \"Ref,For,Con\",\r\n  \"combate\": false,\r\n  \"tipo\": 4\r\n},\r\n{\r\n  \"idHabilidad\": \"Musculación\",\r\n  \"nombre\": \"Musculación\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"For\",\r\n  \"bonusSecundario\": \"Con,Des\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Música\",\r\n  \"nombre\": \"Música\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Des\",\r\n  \"bonusSecundario\": \"Int,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Necromancia\",\r\n  \"nombre\": \"Necromancia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Pod\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Ocultar\",\r\n  \"nombre\": \"Ocultar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Oir\",\r\n  \"nombre\": \"Oir\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Oler\",\r\n  \"nombre\": \"Oler\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Emp,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Oratoria\",\r\n  \"nombre\": \"Oratoria\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Pod\",\r\n  \"bonusSecundario\": \"Int,Con\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Orientación\",\r\n  \"nombre\": \"Orientación\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Palpar\",\r\n  \"nombre\": \"Palpar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per,Des\",\r\n  \"bonusSecundario\": \"Int,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Persuadir\",\r\n  \"nombre\": \"Persuadir\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Int\",\r\n  \"bonusSecundario\": \"Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Pilotar\",\r\n  \"nombre\": \"Pilotar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Per,Ref\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Primeros auxilios\",\r\n  \"nombre\": \"Primeros auxilios\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des,Emp\",\r\n  \"bonusSecundario\": \"Int,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Programación\",\r\n  \"nombre\": \"Programación\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Psicología barata\",\r\n  \"nombre\": \"Psicología barata\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Rastreo\",\r\n  \"nombre\": \"Rastreo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Reciclaje\",\r\n  \"nombre\": \"Reciclaje\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Des,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Redacción\",\r\n  \"nombre\": \"Redacción\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Regateo\",\r\n  \"nombre\": \"Regateo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Emp,Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Remado\",\r\n  \"nombre\": \"Remado\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"For\",\r\n  \"bonusSecundario\": \"Des,Agi\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Resistencia\",\r\n  \"nombre\": \"Resistencia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Con\",\r\n  \"bonusSecundario\": \"Agi,Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Ritos\",\r\n  \"nombre\": \"Ritos\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Robar bolsas\",\r\n  \"nombre\": \"Robar bolsas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Per,Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Robótica - Cibernética\",\r\n  \"nombre\": \"Robótica - Cibernética\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Des,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Rumores\",\r\n  \"nombre\": \"Rumores\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per,Emp\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Saborear\",\r\n  \"nombre\": \"Saborear\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Seducir\",\r\n  \"nombre\": \"Seducir\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Pod\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Seguimiento\",\r\n  \"nombre\": \"Seguimiento\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Int,Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Sentir\",\r\n  \"nombre\": \"Sentir\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Pod\",\r\n  \"bonusSecundario\": \"Emp,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Sigilo\",\r\n  \"nombre\": \"Sigilo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Agi,Vol\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Supervivencia\",\r\n  \"nombre\": \"Supervivencia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Per\",\r\n  \"bonusSecundario\": \"Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Tallado\",\r\n  \"nombre\": \"Tallado\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Int,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Tasar\",\r\n  \"nombre\": \"Tasar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per,Mem\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Terapia\",\r\n  \"nombre\": \"Terapia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Teología\",\r\n  \"nombre\": \"Teología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Mem,Pod\",\r\n  \"bonusSecundario\": \"Mem,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Tirapuertas\",\r\n  \"nombre\": \"Tirapuertas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"For\",\r\n  \"bonusSecundario\": \"Agi\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Trampeo\",\r\n  \"nombre\": \"Trampeo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Int,Per,Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Urbanita\",\r\n  \"nombre\": \"Urbanita\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Per\",\r\n  \"bonusSecundario\": \"Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Usar objetos\",\r\n  \"nombre\": \"Usar objetos\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Pod\",\r\n  \"bonusSecundario\": \"Int,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Ver\",\r\n  \"nombre\": \"Ver\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Abrir\",\r\n  \"nombre\": \"Abrir\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Alcohol\",\r\n  \"nombre\": \"Alcohol\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Ardid\",\r\n  \"nombre\": \"Ardid\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Arengar\",\r\n  \"nombre\": \"Arengar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Pod,Emp\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Balística\",\r\n  \"nombre\": \"Balística\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Botánica\",\r\n  \"nombre\": \"Botánica\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Int\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Buceo\",\r\n  \"nombre\": \"Buceo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Agi\",\r\n  \"bonusSecundario\": \"Con\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Buscar\",\r\n  \"nombre\": \"Buscar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Vol,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Caja fuerte\",\r\n  \"nombre\": \"Caja fuerte\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Des,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Camuflaje\",\r\n  \"nombre\": \"Camuflaje\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Carreta\",\r\n  \"nombre\": \"Carreta\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Chef\",\r\n  \"nombre\": \"Chef\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Cirugía\",\r\n  \"nombre\": \"Cirugía\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Contactos\",\r\n  \"nombre\": \"Contactos\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Pod\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Coral\",\r\n  \"nombre\": \"Coral\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Cosmética\",\r\n  \"nombre\": \"Cosmética\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Per,Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Demagogia\",\r\n  \"nombre\": \"Demagogia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Pod\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Demoliciones\",\r\n  \"nombre\": \"Demoliciones\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Desactivar\",\r\n  \"nombre\": \"Desactivar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Vol,Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Didáctica\",\r\n  \"nombre\": \"Didáctica\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Emp,Pod\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Diplomacia\",\r\n  \"nombre\": \"Diplomacia\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"Mem\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Disfraz\",\r\n  \"nombre\": \"Disfraz\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Emboscada\",\r\n  \"nombre\": \"Emboscada\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Equitación\",\r\n  \"nombre\": \"Equitación\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Escapismo\",\r\n  \"nombre\": \"Escapismo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Agi\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Escucha\",\r\n  \"nombre\": \"Escucha\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Int,Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Etiqueta\",\r\n  \"nombre\": \"Etiqueta\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Etología\",\r\n  \"nombre\": \"Etología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Finanzas\",\r\n  \"nombre\": \"Finanzas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Pod\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Forrajeo\",\r\n  \"nombre\": \"Forrajeo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Int,Vol\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Gemas\",\r\n  \"nombre\": \"Gemas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per,Des\",\r\n  \"bonusSecundario\": \"Int\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Grutas espeleología\",\r\n  \"nombre\": \"Grutas espeleología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Herboristería\",\r\n  \"nombre\": \"Herboristería\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des,Mem\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Hongos\",\r\n  \"nombre\": \"Hongos\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Idioma animal\",\r\n  \"nombre\": \"Idioma animal\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Imitación\",\r\n  \"nombre\": \"Imitación\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Emp,Pod\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Ingeniería\",\r\n  \"nombre\": \"Ingeniería\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Laboratorio\",\r\n  \"nombre\": \"Laboratorio\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Logística\",\r\n  \"nombre\": \"Logística\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Mapas\",\r\n  \"nombre\": \"Mapas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Micología\",\r\n  \"nombre\": \"Micología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem\",\r\n  \"bonusSecundario\": \"Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Zoología\",\r\n  \"nombre\": \"Zoología\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Mem,Int\",\r\n  \"bonusSecundario\": \"Emp\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Armas Pesadas\",\r\n  \"nombre\": \"Armas Pesadas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Pelea\",\r\n  \"nombre\": \"Pelea\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"For,Agi,Des\",\r\n  \"bonusSecundario\": \"Ref,Agi,For\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Artes Marciales\",\r\n  \"nombre\": \"Artes Marciales\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 3\r\n},\r\n{\r\n  \"idHabilidad\": \"Esquiva\",\r\n  \"nombre\": \"Esquiva\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Agi,Ref\",\r\n  \"bonusSecundario\": \"Pod\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Acrobacias\",\r\n  \"nombre\": \"Acrobacias\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Volteretas\",\r\n  \"nombre\": \"Volteretas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 3\r\n},\r\n{\r\n  \"idHabilidad\": \"Parada 1 Mano\",\r\n  \"nombre\": \"Parada 1 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Agi,Pod,For\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Parada 2 Mano\",\r\n  \"nombre\": \"Parada 2 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Agi,Pod,For\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Parada Escudo\",\r\n  \"nombre\": \"Parada Escudo\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Agi,Pod,For\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Desvio\",\r\n  \"nombre\": \"Desvio\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Agi,Pod\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Golpe 1 Mano\",\r\n  \"nombre\": \"Golpe 1 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Agi,For\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Sesgo 1 Mano\",\r\n  \"nombre\": \"Sesgo 1 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Agi,For,Int\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Punta 1 Mano\",\r\n  \"nombre\": \"Punta 1 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Agi,For,Per\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Golpe 2 Mano\",\r\n  \"nombre\": \"Golpe 2 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des,Agi\",\r\n  \"bonusSecundario\": \"Ref,Agi,For\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Sesgo 2 Mano\",\r\n  \"nombre\": \"Sesgo 2 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des,Agi\",\r\n  \"bonusSecundario\": \"Ref,Agi,For,Int\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Punta 2 Mano\",\r\n  \"nombre\": \"Punta 2 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des,Agi\",\r\n  \"bonusSecundario\": \"Ref,Agi,For,Per\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Envite\",\r\n  \"nombre\": \"Envite\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"For\",\r\n  \"bonusSecundario\": \"Ref,Agi,Des\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Proyectiles\",\r\n  \"nombre\": \"Proyectiles\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Ref,Agi,Des\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Arrojar\",\r\n  \"nombre\": \"Arrojar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Agi,For,Per\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Atrape 1 Mano\",\r\n  \"nombre\": \"Atrape 1 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des\",\r\n  \"bonusSecundario\": \"Ref,Agi,For,Per,Int\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Atrape 2 Mano\",\r\n  \"nombre\": \"Atrape 2 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des,Agi\",\r\n  \"bonusSecundario\": \"Ref,Agi,For,Per,Int\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Disparo 1 Mano\",\r\n  \"nombre\": \"Disparo 1 Mano\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Ref,Agi,Des\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Disparo 2 Manos\",\r\n  \"nombre\": \"Disparo 2 Manos\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Ref,Agi,For\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Disparo Armas Pesadas\",\r\n  \"nombre\": \"Disparo Armas Pesadas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Per\",\r\n  \"bonusSecundario\": \"Ref,Agi,For\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Disparo Mech\",\r\n  \"nombre\": \"Disparo Mech\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Int,Per\",\r\n  \"bonusSecundario\": \"Ref,Pod\",\r\n  \"combate\": true,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Pilotar Mech\",\r\n  \"nombre\": \"Pilotar Mech\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"Des,Int\",\r\n  \"bonusSecundario\": \"Ref,Agi,Per\",\r\n  \"combate\": false,\r\n  \"tipo\": 1\r\n},\r\n{\r\n  \"idHabilidad\": \"Mech Ligero\",\r\n  \"nombre\": \"Mech Ligero\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Mech Medio\",\r\n  \"nombre\": \"Mech Medio\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Mech Pesado\",\r\n  \"nombre\": \"Mech Pesado\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Mech Asalto\",\r\n  \"nombre\": \"Mech Asalto\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Armas Láser\",\r\n  \"nombre\": \"Armas Láser\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Armas Balísticas\",\r\n  \"nombre\": \"Armas Balísticas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Armas de Misiles\",\r\n  \"nombre\": \"Armas de Misiles\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Táctica\",\r\n  \"nombre\": \"Táctica\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Correr\",\r\n  \"nombre\": \"Correr\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Trepar\",\r\n  \"nombre\": \"Trepar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Marcha\",\r\n  \"nombre\": \"Marcha\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Nadar\",\r\n  \"nombre\": \"Nadar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Equilibrio\",\r\n  \"nombre\": \"Equilibrio\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Arma Corta\",\r\n  \"nombre\": \"Arma Corta\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Escopeta\",\r\n  \"nombre\": \"Escopeta\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Subfusil\",\r\n  \"nombre\": \"Subfusil\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Fusil Asalto\",\r\n  \"nombre\": \"Fusil Asalto\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Rifles\",\r\n  \"nombre\": \"Rifles\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Ametralladora\",\r\n  \"nombre\": \"Ametralladora\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n},\r\n{\r\n  \"idHabilidad\": \"Ballestas\",\r\n  \"nombre\": \"Ballestas\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": true,\r\n  \"tipo\": 2\r\n}\r\n]"
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/habilidades",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"habilidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Habilidad Base",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Nadar\",\r\n  \"descripcion\": \"\",\r\n  \"bonusPrincipal\": \"\",\r\n  \"bonusSecundario\": \"\",\r\n  \"combate\": false,\r\n  \"tipo\": 2\r\n}"
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/habilidades/{{idHabilidad}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"habilidades",
+								"{{idHabilidad}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Personaje",
+			"item": [
+				{
+					"name": "Crear Personaje",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"idPersonaje\": \"UIs6QikFX6CCd9JabSlo\",\r\n    \"nombre\": \"Siggurd\",\r\n    \"avatar\": \"\",\r\n    \"cultura\": \"Edain\",\r\n    \"raza\": \"Dunedain\",\r\n    \"edad\": \"27\",\r\n    \"procedencia\": \"Gondor\",\r\n    \"nivel\": \"27\",\r\n    \"caracteristicas\": {\r\n    \t\"Agi\": [36,37],\r\n    \t\"Apa\": [17,17],\r\n    \t\"Con\": [20,21],\r\n    \t\"Des\": [30,31],\r\n    \t\"Emp\": [20,21],\r\n    \t\"For\": [26,31],\r\n    \t\"Int\": [14,16],\r\n    \t\"Mem\": [29,31],\r\n    \t\"Per\": [37,38],\r\n    \t\"Pod\": [33,34],\r\n    \t\"Ref\": [21,21],\r\n    \t\"Vol\": [18,21]\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/personajes",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"personajes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Personaje",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/personajes/{{idPersonaje}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"personajes",
+								"{{idPersonaje}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Personajes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/personajes",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"personajes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Personaje",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nivel\": \"2\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/personajes/{{idPersonaje}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"personajes",
+								"{{idPersonaje}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aprender Habilidad",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"valorBase\": 10,\n\t\"pap\": 0,\n\t\"extra\": 0,\n\t\"habilidadUsada\": false\n}"
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/personajes/{{idPersonaje}}/habilidades/{{idHabilidad}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"personajes",
+								"{{idPersonaje}}",
+								"habilidades",
+								"{{idHabilidad}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Habilidades del Personaje",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/personajes/{{idPersonaje}}/habilidades",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"personajes",
+								"{{idPersonaje}}",
+								"habilidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener una Habilidad del Personaje",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/personajes/{{idPersonaje}}/habilidades/{{idHabilidadPersonaje}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"personajes",
+								"{{idPersonaje}}",
+								"habilidades",
+								"{{idHabilidadPersonaje}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Habilidad",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"pap\": 0\n}"
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/personajes/{{idPersonaje}}/habilidades/{{idHabilidadPersonaje}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"personajes",
+								"{{idPersonaje}}",
+								"habilidades",
+								"{{idHabilidadPersonaje}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Registro Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idUsuario\": \"n2E5Er10voOIgZwB4f5dibj8FQC3\",\r\n  \"correo\": \"g.ulric@gmail.com\",\r\n  \"alias\": \"Ulric\",\r\n  \"contrasena\": \"evangelion1\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/usuarios",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener token / Basic Auth Login",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "A",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "g.ulric@gmail.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/tokens",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tokens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/usuarios",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/usuarios/{{idUsuario}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"{{idUsuario}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"contrasena\": \"evangelion1\"\n}"
+						},
+						"url": {
+							"raw": "{{url_heroku}}/api/v1/usuarios/{{idUsuario}}",
+							"host": [
+								"{{url_heroku}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"{{idUsuario}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_heroku}}",
+					"host": [
+						"{{url_heroku}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rellenar una BD vacia con los datos de Firebase",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "HEAD",
+				"header": [],
+				"url": {
+					"raw": "{{url_heroku}}/api/v1/firebase",
+					"host": [
+						"{{url_heroku}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"firebase"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
